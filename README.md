@@ -1,4 +1,4 @@
-# Mobile-comittee Repo
+# Mobile-committee Repo
 
 master branch: our main interface (Don't push code here).
 
