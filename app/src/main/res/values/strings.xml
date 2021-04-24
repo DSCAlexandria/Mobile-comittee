@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Shinny</string>
+    <string name="shinny">Shinny</string>
+    <string name="get_started">Get Started</string>
+    <string name="wind_degree">Wind Degree:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="more_details">More details:</string>
+    <string name="pressure">Pressure:</string>
+</resources>
