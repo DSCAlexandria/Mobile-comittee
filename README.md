@@ -1,3 +1,3 @@
-# Mobile-committee
+# Shinny
 
 Checkout branches to download the project for each session.
