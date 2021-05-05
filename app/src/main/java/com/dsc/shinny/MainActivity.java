@@ -2,15 +2,7 @@ package com.dsc.shinny;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,43 +11,32 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dsc.shinny.Adapter.ForecastAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
+        ArrayList<Weather> list = createTestList();
 
-        updateWeather();
+        initializeList(list);
     }
 
-    private void updateWeather() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://mocki.io/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        WeatherApi service = retrofit.create(WeatherApi.class);
-        service.getForecast().enqueue(new Callback<ArrayList<Weather>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Weather>> call, Response<ArrayList<Weather>> response) {
-                updateRecyclerView(response.body());
+    private ArrayList<Weather> createTestList() {
+        ArrayList<Weather> list = new ArrayList<>();
 
-                progressBar.setVisibility(View.GONE);
-            }
+        list.add(new Weather("Saturday", "clear", "clear sky", 50, 1000, 0, 19, 40, 35));
+        list.add(new Weather("Sunday", "rainy", "heavy rain", 50, 1000, 0, 19, 30, 15));
+        list.add(new Weather("Sunday", "rainy", "heavy rain", 50, 1000, 0, 19, 30, 15));
+        list.add(new Weather("Sunday", "rainy", "heavy rain", 50, 1000, 0, 19, 30, 15));
+        list.add(new Weather("Sunday", "rainy", "heavy rain", 50, 1000, 0, 19, 30, 15));
+        list.add(new Weather("Sunday", "rainy", "heavy rain", 50, 1000, 0, 19, 30, 15));
+        list.add(new Weather("Sunday", "rainy", "heavy rain", 50, 1000, 0, 19, 30, 15));
 
-            @Override
-            public void onFailure(Call<ArrayList<Weather>> call, Throwable t) {
-                progressBar.setVisibility(View.GONE);
-
-                Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+        return list;
     }
 
-    private void updateRecyclerView(ArrayList<Weather> weatherList) {
+    private void initializeList(ArrayList<Weather> weatherList) {
         final ForecastAdapter forecastAdapter = new ForecastAdapter(weatherList);
 
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -64,5 +45,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(forecastAdapter);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
+
 
 }

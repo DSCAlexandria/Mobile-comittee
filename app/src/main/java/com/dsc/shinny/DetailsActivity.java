@@ -8,9 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailsActivity extends AppCompatActivity {
-    public static final String BUNDLE_KEY = "clickedForecast_Data";
-
-    private Weather weatherObj = new Weather();
+    public static final String KEY = "clickedForecast_Data";
 
 
     @Override
@@ -18,27 +16,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-
-        /*
-        //get with method 1
-        Intent intent = getIntent();
-
-        weatherObj.setIconResId(intent.getIntExtra("iconDrawableID", 0));
-        weatherObj.setCondition(intent.getStringExtra("weatherCondition"));
-        weatherObj.setDescription(intent.getStringExtra("weatherConditionDetails"));
-        weatherObj.setMaxTemp(intent.getIntExtra("temperature",0));
-        weatherObj.setDay(intent.getStringExtra("dayName"));
-        weatherObj.setHumidity(intent.getIntExtra("humidity",-1));
-        weatherObj.setPressure(intent.getIntExtra("pressure",0));
-        weatherObj.setWindDeg(intent.getIntExtra("windDeg",0));
-        //End method 1
-        */
-
-        //get with method 2
-        Bundle bundle = getIntent().getExtras();
-        weatherObj = (Weather) bundle.getSerializable(BUNDLE_KEY);
-        //End method 2
-
+        Weather weatherObj = (Weather) getIntent().getSerializableExtra(KEY);
 
         ImageView image = findViewById(R.id.icon_details);
         image.setImageResource(weatherObj.getIconResId());

@@ -15,7 +15,7 @@ import com.dsc.shinny.Weather;
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastViewHolder> {
     private final int TYPE_HEADER = 0;
     private final int TYPE_CELL = 1;
-    private ArrayList<Weather> weatherList = null;
+    private ArrayList<Weather> weatherList;
 
     public ForecastAdapter(ArrayList<Weather> weatherList) {
         this.weatherList = weatherList;

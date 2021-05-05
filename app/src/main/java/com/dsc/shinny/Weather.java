@@ -2,22 +2,28 @@ package com.dsc.shinny;
 
 import java.io.Serializable;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Weather implements Serializable {
     private String day;
     private String condition;
     private String description;
     private int humidity;
     private int pressure;
-    private int iconResId = 0;
-
-    @SerializedName("min_temp")
+    private int iconResId;
     private int minTemp;
-    @SerializedName("max_temp")
     private int maxTemp;
-    @SerializedName("wind_deg")
     private int windDeg;
+
+    public Weather(String day, String condition, String description, int humidity, int pressure, int iconResId, int minTemp, int maxTemp, int windDeg) {
+        this.day = day;
+        this.condition = condition;
+        this.description = description;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        this.iconResId = iconResId;
+        this.minTemp = minTemp;
+        this.maxTemp = maxTemp;
+        this.windDeg = windDeg;
+    }
 
     public String getDay() {
         return day;
